@@ -1,3 +1,19 @@
+# Crypto Ratios
+
+This project serves for watching ratios between given crypto currencies.
+
+For example, my favorite is MATIC/XRP, being targeted as ***[base] / [quote]*** in this project.
+
+Currently it works, but need some improvements to make it more flexible:
+
+## TODO
+- ***[In Progress]*** Make the data source [crypto prices] central, so that when the prices are retrieved, all the ratio boxex are refreshed automatically.
+- Preserve the state (added crypto ratio boxes) in the Local Storage. Maybe later in an API.
+- Add indicator how long ago the prices were last reloaded.
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
