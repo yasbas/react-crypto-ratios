@@ -5,15 +5,17 @@ import './card-list.styles.css';
 
 const CardList = ({allPrices, pairs}) => {
 
+	const getPrice = (coin, allPrices) => {
+		let result = allPrices.filter(price => price.symbol == coin);
+		return result.length > 0 ? result[0].price : 0;
+	}
+
 	const calcRatio = (base, quote, allPrices) => {
 		let ratio = 0
-		const baseData = allPrices.filter(price => price.symbol == base);
-		const quoteData = allPrices.filter(price => price.symbol == quote);
-		if (
-			baseData.length > 0 &&
-			quoteData.length > 0
-		) {
-			ratio = baseData[0].price / quoteData[0].price
+		const basePrice = getPrice(base, allPrices)
+		const quoteData = getPrice(quote, allPrices);
+		if (basePrice > 0 && quoteData > 0) {
+			ratio = basePrice / quoteData
 		}
 
 		return ratio.toFixed(6)
@@ -25,8 +27,10 @@ const CardList = ({allPrices, pairs}) => {
 			pairs.map(pair =>
 				<Card
 					key={pair.base+pair.quote}
-					base={pair.base}
-					quote={pair.quote}
+					baseName={pair.base}
+					basePrice={getPrice(pair.base, allPrices)}
+					quoteName={pair.quote}
+					quotePrice={getPrice(pair.quote, allPrices)}
 					ratio={ calcRatio(pair.base, pair.quote, allPrices) }
 
 				/>

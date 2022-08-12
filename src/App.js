@@ -11,7 +11,8 @@ class App extends Component {
 				{'base': 'MATIC', 'quote': 'XRP'},
 				{'base': 'ALGO', 'quote': 'HNT'},
 				{'base': 'ALGO', 'quote': 'DOT'}
-			]
+			],
+			lastLoadDateTime: ''
 		}
 
 		this.coinSuffix = 'USDT'
@@ -32,6 +33,7 @@ class App extends Component {
 					}
 				)
 				this.setState({allPrices: json})
+				this.setState({lastLoadDateTime: new Date().toLocaleString()})
 			}
 		)
 	}
@@ -59,8 +61,10 @@ class App extends Component {
 
 		return (
 			<div className="App">
-				<button onClick={this.loadData}>Reload</button>
 				<CardList allPrices={this.state.allPrices} pairs={this.state.pairs} />
+				<br/>
+				<button onClick={this.loadData}>Reload</button>
+				<p> Last load on: {this.state.lastLoadDateTime}</p>
 			</div>
 		);
 	}

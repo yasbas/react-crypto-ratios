@@ -4,6 +4,6 @@ import './card.styles.css';
 
 export const Card = (props) => (
 	<div className="card-container">
-		{props.base} / {props.quote} : {props.ratio}
+		{props.baseName} / {props.quoteName} : {props.ratio} ({props.basePrice} / {props.quotePrice})
 	</div>
 )
