@@ -13,6 +13,8 @@ class App extends Component {
 				{'base': 'ALGO', 'quote': 'DOT'}
 			]
 		}
+
+		this.coinSuffix = 'USDT'
 	}
 
 	loadData = () => {
@@ -22,12 +24,11 @@ class App extends Component {
 			json => {
 				let uniqueCoins = this.extractUniqueCoinsFromPairs()
 				json = json.filter(pair => uniqueCoins.includes(pair.symbol))
-				// YADO: make suffix var as class or state var
 
 				// Remove 'USDT' from symbols
 				json = json.map(
 					pair => {
-						return {...pair, symbol: pair.symbol.replace('USDT', '')}
+						return {...pair, symbol: pair.symbol.replace(this.coinSuffix, '')}
 					}
 				)
 				this.setState({allPrices: json})
@@ -41,13 +42,12 @@ class App extends Component {
 
 	extractUniqueCoinsFromPairs () {
 		let uniqueValiesArr = []
-		let suffix = 'USDT'
 		this.state.pairs.forEach((item, index) => {
 			if (uniqueValiesArr.indexOf(item.base) === -1) {
-				uniqueValiesArr.push(item.base + suffix)
+				uniqueValiesArr.push(item.base + this.coinSuffix)
 			}
 			if (uniqueValiesArr.indexOf(item.quote) === -1) {
-				uniqueValiesArr.push(item.quote + suffix)
+				uniqueValiesArr.push(item.quote + this.coinSuffix)
 			}
 		})
 
