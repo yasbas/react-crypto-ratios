@@ -6,7 +6,7 @@ import './card-list.styles.css';
 const CardList = ({allPrices, pairs}) => {
 
 	const getPrice = (coin, allPrices) => {
-		let result = allPrices.filter(price => price.symbol == coin);
+		let result = allPrices.filter(price => price.symbol === coin);
 		return result.length > 0 ? result[0].price : 0;
 	}
 
