@@ -57,8 +57,6 @@ class App extends Component {
 	}
 
 	render () {
-		const { allPrices } = this.state
-
 		return (
 			<div className="App">
 				<CardList allPrices={this.state.allPrices} pairs={this.state.pairs} />
