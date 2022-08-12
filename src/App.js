@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import CardList from './components/card-list/card-list.component';
+import './App.css';
 
 class App extends Component {
 	constructor () {
@@ -10,7 +11,8 @@ class App extends Component {
 			pairs: [
 				{'base': 'MATIC', 'quote': 'XRP'},
 				{'base': 'ALGO', 'quote': 'HNT'},
-				{'base': 'ALGO', 'quote': 'DOT'}
+				{'base': 'ALGO', 'quote': 'DOT'},
+				{'base': 'DOT', 'quote': 'LINK'},
 			],
 			lastLoadDateTime: ''
 		}
@@ -61,8 +63,8 @@ class App extends Component {
 			<div className="App">
 				<CardList allPrices={this.state.allPrices} pairs={this.state.pairs} />
 				<br/>
-				<button onClick={this.loadData}>Reload</button>
-				<p> Last load on: {this.state.lastLoadDateTime}</p>
+				<button onClick={this.loadData} className="button">Reload</button>
+				<span className="load-datetime"> {this.state.lastLoadDateTime}</span>
 			</div>
 		);
 	}
