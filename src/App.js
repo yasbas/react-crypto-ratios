@@ -10,8 +10,10 @@ class App extends Component {
 			allPrices: [],
 			pairs: [
 				{'base': 'MATIC', 'quote': 'XRP'},
-				{'base': 'ALGO', 'quote': 'HNT'},
 				{'base': 'ALGO', 'quote': 'DOT'},
+				{'base': 'ALPACA', 'quote': 'XRP'},
+				{'base': 'ALPACA', 'quote': 'HNT'},
+				{'base': 'ALGO', 'quote': 'HNT'},
 				{'base': 'DOT', 'quote': 'LINK'},
 			],
 			lastLoadDateTime: ''
