@@ -9,12 +9,12 @@ class App extends Component {
 		this.state = {
 			allPrices: [],
 			pairs: [
-				{'base': 'MATIC', 'quote': 'XRP'},
 				{'base': 'ALGO', 'quote': 'DOT'},
 				{'base': 'ALPACA', 'quote': 'XRP'},
 				{'base': 'ALPACA', 'quote': 'HNT'},
+				{'base': 'JOE', 'quote': 'XRP'},
+				{'base': 'MATIC', 'quote': 'XRP'},
 				{'base': 'ALGO', 'quote': 'HNT'},
-				{'base': 'DOT', 'quote': 'LINK'},
 			],
 			lastLoadDateTime: ''
 		}
