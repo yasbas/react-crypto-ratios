@@ -49,7 +49,7 @@ class App extends Component {
 		fetch('http://localhost:8001/api/json')
 			.then(response => response.json())
 			.then(json => {
-				console.log(json)
+				//console.log(json)
 				this.setState({positions: json.positions})
 			})
 

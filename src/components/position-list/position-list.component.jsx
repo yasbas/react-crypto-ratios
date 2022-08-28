@@ -17,7 +17,7 @@ const PositionList = ({positions, allPrices}) => {
 		if (basePrice > 0 && quoteData > 0) {
 			ratio = basePrice / quoteData
 		}
-		console.log('calculation ration for '+base+'/'+quote+' ... '+ratio)
+		//console.log('calculation ration for '+base+'/'+quote+' ... '+ratio)
 		return ratio.toFixed(6)
 	}
 

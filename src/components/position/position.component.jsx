@@ -34,15 +34,21 @@ const Position = ({position, ratio, mainCryptoPrice}) => {
 	}
 
 	return (
-		<p>
-			Title: {position.title} <br/>
-			Size: {getPositionSize()} <br/>
-			Current Ratio: {ratio} <br/>
-			Close Amount: {getPositionCloseAmount()} <br/>
-			Close Profit Amount: {getPositionCloseProfitAmount()} <br/>
-			Close Profit Percentage: {getPositionCloseProfitPercentage()} <br/>
-			Close Profit USDT: {getPositionCloseProfitUsdt()} <br/>
-		</p>
+		<div className="position-container">
+			<p>
+			{position.title} {getPositionCloseProfitPercentage()}% {getPositionCloseProfitAmount()}{position.main_crypto} ${getPositionCloseProfitUsdt()}
+			<br/>
+			Size: {getPositionSize()}{position.main_crypto} [Account]
+			{/*<hr/>*/}
+			{/*Title: {position.title} <br/>*/}
+			{/*Size: {getPositionSize()} <br/>*/}
+			{/*Current Ratio: {ratio} <br/>*/}
+			{/*Close Amount: {getPositionCloseAmount()} <br/>*/}
+			{/*Close Profit Amount: {getPositionCloseProfitAmount()} <br/>*/}
+			{/*Close Profit Percentage: {getPositionCloseProfitPercentage()} <br/>*/}
+			{/*Close Profit USDT: {getPositionCloseProfitUsdt()} <br/>*/}
+			</p>
+		</div>
 	)
 };
 
