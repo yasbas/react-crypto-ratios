@@ -46,11 +46,11 @@ class App extends Component {
 
 		// Load positions
 		// CORS issues: https://developer.okta.com/blog/2021/08/02/fix-common-problems-cors#how-to-solve-a-simple-cors-issue
-		fetch('http://localhost:8000/api/json')
+		fetch('http://localhost:8001/api/json')
 			.then(response => response.json())
 			.then(json => {
 				console.log(json)
-				this.setState({positions: json})
+				this.setState({positions: json.positions})
 			})
 
 	}

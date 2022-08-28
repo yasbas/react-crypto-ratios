@@ -18,6 +18,24 @@ Currently it works, but need some improvements to make it more flexible:
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Currently the project's repo is hosted on both GitHub and GitLab. For GitHub, the private key id_rsa is used.
+For GitLab id_supergeek private key is used. To add additional ssh key for usage in authentication process with 
+GitLab, add the ssh key in the ~/.ssh/config file, like this:
+```
+# ~/.ssh/config
+# GitLab.com
+Host gitlab.com
+  PreferredAuthentications publickey
+  IdentityFile ~/.ssh/gitlab_com_rsa
+
+# Private GitLab instance
+Host gitlab.company.com
+  PreferredAuthentications publickey
+  IdentityFile ~/.ssh/id_supergeek
+```
+
+For more info about ssh keys related stuff: https://docs.gitlab.com/ee/user/ssh.html#rsa-ssh-keys
+
 ## Available Scripts
 
 In the project directory, you can run:
