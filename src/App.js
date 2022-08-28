@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import CardList from './components/card-list/card-list.component';
+// import CardList from './components/card-list/card-list.component';
 import PositionList from "./components/position-list/position-list.component";
 import './App.css';
 
