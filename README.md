@@ -7,9 +7,13 @@ For example, my favorite is MATIC/XRP, being targeted as ***[base] / [quote]*** 
 Currently it works, but need some improvements to make it more flexible:
 
 ## TODO
-- ***[In Progress]*** Make the data source [crypto prices] central, so that when the prices are retrieved, all the ratio boxex are refreshed automatically.
-- Preserve the state (added crypto ratio boxes) in the Local Storage. Maybe later in an API.
-- Add indicator how long ago the prices were last reloaded.
+- Add field for setting the BE url and store it to local Storage.
+- Add coins prices and the ratio as a 3rd row in the position block.
+- What about adding SHORT positions like in the XRP / BTC  trade ?
+- ***[In Progress]*** ...
+- ~~Style position box.~~
+- ~~Format positive and negative metrics.~~
+- ~~Add Account data to BE and FE.~~
 
 
 
@@ -17,6 +21,24 @@ Currently it works, but need some improvements to make it more flexible:
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+Currently the project's repo is hosted on both GitHub and GitLab. For GitHub, the private key id_rsa is used.
+For GitLab id_supergeek private key is used. To add additional ssh key for usage in authentication process with 
+GitLab, add the ssh key in the ~/.ssh/config file, like this:
+```
+# ~/.ssh/config
+# GitLab.com
+Host gitlab.com
+  PreferredAuthentications publickey
+  IdentityFile ~/.ssh/gitlab_com_rsa
+
+# Private GitLab instance
+Host gitlab.company.com
+  PreferredAuthentications publickey
+  IdentityFile ~/.ssh/id_supergeek
+```
+
+For more info about ssh keys related stuff: https://docs.gitlab.com/ee/user/ssh.html#rsa-ssh-keys
 
 ## Available Scripts
 

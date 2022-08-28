@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import CardList from './components/card-list/card-list.component';
+import PositionList from "./components/position-list/position-list.component";
 import './App.css';
 
 class App extends Component {
@@ -16,6 +17,7 @@ class App extends Component {
 				{'base': 'MATIC', 'quote': 'XRP'},
 				{'base': 'ALGO', 'quote': 'HNT'},
 			],
+			positions: [],
 			lastLoadDateTime: ''
 		}
 
@@ -23,6 +25,7 @@ class App extends Component {
 	}
 
 	loadData = () => {
+		// Load current prices
 		fetch('https://www.binance.com/api/v1/ticker/allPrices')
 		.then(response => response.json())
 		.then(
@@ -40,6 +43,19 @@ class App extends Component {
 				this.setState({lastLoadDateTime: new Date().toLocaleString()})
 			}
 		)
+
+		// Load positions
+		// CORS issues: https://developer.okta.com/blog/2021/08/02/fix-common-problems-cors#how-to-solve-a-simple-cors-issue
+		//fetch('http://localhost:8001/api/json')
+		fetch('http://yasbas.com/cryptobe/web/api/json')
+			.then(response => response.json())
+			.then(json => {
+				// Return the positions, filtering the test positions
+				// this.setState({positions: json.positions}
+				this.setState({positions: json.positions.filter(position => !position.title.toLowerCase().includes('test'))}
+				)
+			})
+
 	}
 
 	componentDidMount () {
@@ -47,26 +63,31 @@ class App extends Component {
 	}
 
 	extractUniqueCoinsFromPairs () {
-		let uniqueValiesArr = []
+		let uniqueValuesArr = []
 		this.state.pairs.forEach((item, index) => {
-			if (uniqueValiesArr.indexOf(item.base) === -1) {
-				uniqueValiesArr.push(item.base + this.coinSuffix)
+			if (uniqueValuesArr.indexOf(item.base) === -1) {
+				uniqueValuesArr.push(item.base + this.coinSuffix)
 			}
-			if (uniqueValiesArr.indexOf(item.quote) === -1) {
-				uniqueValiesArr.push(item.quote + this.coinSuffix)
+			if (uniqueValuesArr.indexOf(item.quote) === -1) {
+				uniqueValuesArr.push(item.quote + this.coinSuffix)
 			}
 		})
 
-		return uniqueValiesArr;
+		return uniqueValuesArr;
 	}
 
 	render () {
 		return (
 			<div className="App">
-				<CardList allPrices={this.state.allPrices} pairs={this.state.pairs} />
-				<br/>
-				<button onClick={this.loadData} className="button">Reload</button>
-				<span className="load-datetime"> {this.state.lastLoadDateTime}</span>
+				{/*<CardList allPrices={this.state.allPrices} pairs={this.state.pairs} />*/}
+				{/*<br/>*/}
+
+				<PositionList positions={this.state.positions} allPrices={this.state.allPrices} />
+
+				<p>
+					<button onClick={this.loadData} className="button">Reload</button>
+					<span className="load-datetime"> {this.state.lastLoadDateTime}</span>
+				</p>
 			</div>
 		);
 	}
