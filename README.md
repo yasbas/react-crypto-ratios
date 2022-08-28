@@ -10,6 +10,8 @@ Currently it works, but need some improvements to make it more flexible:
 - Style position box.
 - Format positive and negative metrics.
 - Add Account data to BE and FE.
+- Add coins prices and the ratio as a 3rd row in the position block.
+- What about adding SHORT positions like in the XRP / BTC  trade ?
 - ***[In Progress]*** ...
 
 

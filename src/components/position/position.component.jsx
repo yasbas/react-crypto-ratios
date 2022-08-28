@@ -21,7 +21,6 @@ const Position = ({position, ratio, mainCryptoPrice}) => {
 	}
 
 	const getPositionCloseProfitPercentage = () => {
-		// YADO: What about when the position is reduced to 0 !?!
 		if (getPositionSize() > 0) {
 			return (getPositionCloseProfitAmount() / getPositionSize() * 100).toFixed(2)
 		} else {
@@ -35,19 +34,16 @@ const Position = ({position, ratio, mainCryptoPrice}) => {
 
 	return (
 		<div className="position-container">
-			<p>
-			{position.title} {getPositionCloseProfitPercentage()}% {getPositionCloseProfitAmount()}{position.main_crypto} ${getPositionCloseProfitUsdt()}
+			<span className="title">{position.title}</span>
+
+			<span className={'profit-indicator ' + (getPositionCloseProfitAmount() > 0 ? 'profit' : 'loss')}>
+				<span><strong>{getPositionCloseProfitPercentage()}</strong>%</span>
+				<span><strong>{getPositionCloseProfitAmount()}</strong>{position.main_crypto}</span>
+				<span><strong>${getPositionCloseProfitUsdt()}</strong></span>
+			</span>
 			<br/>
-			Size: {getPositionSize()}{position.main_crypto} [Account]
-			{/*<hr/>*/}
-			{/*Title: {position.title} <br/>*/}
-			{/*Size: {getPositionSize()} <br/>*/}
-			{/*Current Ratio: {ratio} <br/>*/}
-			{/*Close Amount: {getPositionCloseAmount()} <br/>*/}
-			{/*Close Profit Amount: {getPositionCloseProfitAmount()} <br/>*/}
-			{/*Close Profit Percentage: {getPositionCloseProfitPercentage()} <br/>*/}
-			{/*Close Profit USDT: {getPositionCloseProfitUsdt()} <br/>*/}
-			</p>
+			<span className="additional-info">Size: <strong>{getPositionSize()}</strong>{position.main_crypto} Account: <strong>{position.exchange_account}</strong></span>
+
 		</div>
 	)
 };

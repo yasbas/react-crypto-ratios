@@ -1,3 +1,29 @@
 .position-container {
-    /*border: 1px solid #000;*/
+    margin-bottom: 25px;
+}
+
+.position-container span {
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+.position-container .title {
+    color: #fff;
+    font-weight: bold;
+}
+
+.profit-indicator  span {
+    font-size: 16px;
+}
+
+.profit {
+    color: #72a168;
+}
+
+.loss {
+    color: red;
+}
+
+.additional-info {
+    color: #3681c2;
 }

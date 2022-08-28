@@ -1,5 +1,9 @@
 .App {
-    padding: 15px;
+    padding: 25px;
+}
+
+body {
+    background: #141c23;
 }
 
 .button {

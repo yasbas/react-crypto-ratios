@@ -49,8 +49,10 @@ class App extends Component {
 		fetch('http://localhost:8001/api/json')
 			.then(response => response.json())
 			.then(json => {
-				//console.log(json)
-				this.setState({positions: json.positions})
+				// Return the positions, filtering the test positions
+				// this.setState({positions: json.positions}
+				this.setState({positions: json.positions.filter(position => !position.title.toLowerCase().includes('test'))}
+				)
 			})
 
 	}
@@ -76,12 +78,15 @@ class App extends Component {
 	render () {
 		return (
 			<div className="App">
-				<CardList allPrices={this.state.allPrices} pairs={this.state.pairs} />
-				<br/>
-				<button onClick={this.loadData} className="button">Reload</button>
-				<span className="load-datetime"> {this.state.lastLoadDateTime}</span>
+				{/*<CardList allPrices={this.state.allPrices} pairs={this.state.pairs} />*/}
+				{/*<br/>*/}
 
 				<PositionList positions={this.state.positions} allPrices={this.state.allPrices} />
+
+				<p>
+					<button onClick={this.loadData} className="button">Reload</button>
+					<span className="load-datetime"> {this.state.lastLoadDateTime}</span>
+				</p>
 			</div>
 		);
 	}
