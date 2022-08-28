@@ -7,12 +7,13 @@ For example, my favorite is MATIC/XRP, being targeted as ***[base] / [quote]*** 
 Currently it works, but need some improvements to make it more flexible:
 
 ## TODO
-- Style position box.
-- Format positive and negative metrics.
-- Add Account data to BE and FE.
+- Add field for setting the BE url and store it to local Storage.
 - Add coins prices and the ratio as a 3rd row in the position block.
 - What about adding SHORT positions like in the XRP / BTC  trade ?
 - ***[In Progress]*** ...
+- ~~Style position box.~~
+- ~~Format positive and negative metrics.~~
+- ~~Add Account data to BE and FE.~~
 
 
 
