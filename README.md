@@ -6,6 +6,11 @@ For example, my favorite is MATIC/XRP, being targeted as ***[base] / [quote]*** 
 
 Currently it works, but need some improvements to make it more flexible:
 
+### TOFIX
+- Netlify doesn't accept non-httpS connection, therefore the CryptoBE json 
+  can't be accessed from the React FE. So, possible solutions so far:
+  - Install free Let's Encrypt or paid SSL certificate on yasbas.com.
+  - Move React FE app to self-hosting with http serving.
 ## TODO
 - Add field for setting the BE url and store it to local Storage.
 - Add coins prices and the ratio as a 3rd row in the position block.
