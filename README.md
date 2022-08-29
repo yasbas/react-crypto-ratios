@@ -11,6 +11,7 @@ Currently it works, but need some improvements to make it more flexible:
   can't be accessed from the React FE. So, possible solutions so far:
   - Install free Let's Encrypt or paid SSL certificate on yasbas.com.
   - Move React FE app to self-hosting with http serving.
+  Info: https://www.drupal.org/https-information
 ## TODO
 - Add field for setting the BE url and store it to local Storage.
 - Add coins prices and the ratio as a 3rd row in the position block.
@@ -44,6 +45,10 @@ Host gitlab.company.com
 ```
 
 For more info about ssh keys related stuff: https://docs.gitlab.com/ee/user/ssh.html#rsa-ssh-keys
+
+DEPLOY NOTE: when importing the DB in PhpMyAdmin on CPanel, it might need to edit the SQL dump file and replace 'utf8mb4' 
+with just 'utf8'. Also, while editing the SQL dump file, replace the site base url 'http://localhost:8001' with 
+the actual domain nime, e.g.: http://yasbas.com/cryptobe/web.
 
 ## Available Scripts
 

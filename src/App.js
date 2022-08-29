@@ -46,13 +46,15 @@ class App extends Component {
 
 		// Load positions
 		// CORS issues: https://developer.okta.com/blog/2021/08/02/fix-common-problems-cors#how-to-solve-a-simple-cors-issue
-		// fetch('http://localhost:8001/api/json', {referrerPolicy: 'unsafe-url'})
-		fetch('http://yasbas.com/cryptobe/web/api/json', {referrerPolicy: 'unsafe-url'})
+		fetch('http://localhost:8001/api/json', {referrerPolicy: 'unsafe-url'})
+		// fetch('http://yasbas.com/cryptobe/web/api/json', {referrerPolicy: 'unsafe-url'})
 			.then(response => response.json())
 			.then(json => {
 				// Return the positions, filtering the test positions
 				// this.setState({positions: json.positions}
-				this.setState({positions: json.positions.filter(position => !position.title.toLowerCase().includes('test'))}
+				let filteredPositions = json.positions.filter(position => !position.title.toLowerCase().includes('test'));
+				filteredPositions = json.positions.filter(position => !position.title.toLowerCase().includes('[closed]'));
+				this.setState({positions: filteredPositions.filter(position => !position.title.toLowerCase().includes('test'))}
 				)
 			})
 
