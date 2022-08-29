@@ -4,17 +4,18 @@ This project serves for watching ratios between given crypto currencies.
 
 For example, my favorite is MATIC/XRP, being targeted as ***[base] / [quote]*** in this project.
 
-Currently it works, but need some improvements to make it more flexible:
+Currently, it works, but need some improvements to make it more flexible:
 
 ### TOFIX
-- Netlify doesn't accept non-httpS connection, therefore the CryptoBE json 
-  can't be accessed from the React FE. So, possible solutions so far:
-  - Install free Let's Encrypt or paid SSL certificate on yasbas.com.
-  - Move React FE app to self-hosting with http serving.
-  Info: https://www.drupal.org/https-information
+- ~~Netlify doesn't accept non-httpS connection, therefore the CryptoBE json 
+  can't be accessed from the React FE. So, possible solutions so far:~~
+  - ~~Install free Let's Encrypt or paid SSL certificate on yasbas.com.~~
+  - ~~Move React FE app to self-hosting with http serving.~~
+  ~~Solution was to instal Lets Encrypt for yasbas.com.
+  Info: https://www.drupal.org/https-information~~
 ## TODO
 - Add field for setting the BE url and store it to local Storage.
-- Add coins prices and the ratio as a 3rd row in the position block.
+- ~~Add coins prices and the ratio as a 3rd row in the position block.~~
 - What about adding SHORT positions like in the XRP / BTC  trade ?
 - ***[In Progress]*** ...
 - ~~Style position box.~~

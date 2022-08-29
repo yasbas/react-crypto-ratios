@@ -27,3 +27,10 @@
 .additional-info {
     color: #3681c2;
 }
+
+span.additional-info-2 {
+    /*color: #807a7a;*/
+    color: rgb(115 161 104 / 39%);
+
+    font-size: 14px;
+}

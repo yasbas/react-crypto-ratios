@@ -87,8 +87,8 @@ class App extends Component {
 				<PositionList positions={this.state.positions} allPrices={this.state.allPrices} />
 
 				<p>
-					<button onClick={this.loadData} className="button">Reload</button>
-					<span className="load-datetime"> {this.state.lastLoadDateTime}</span>
+					<p><button onClick={this.loadData} className="button">Reload</button></p>
+					<span className="additional-info-2"> {this.state.lastLoadDateTime}</span>
 				</p>
 			</div>
 		);

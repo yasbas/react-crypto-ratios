@@ -2,7 +2,7 @@ import React from 'react';
 
 import './position.styles.css';
 
-const Position = ({position, ratio, mainCryptoPrice}) => {
+const Position = ({position, ratio, mainCryptoPrice, tempCryptoPrice}) => {
 
 	const getPositionSize = () => {
 		return position.main_crypto_amount_in - position.main_crypto_amount_out
@@ -43,6 +43,8 @@ const Position = ({position, ratio, mainCryptoPrice}) => {
 			</span>
 			<br/>
 			<span className="additional-info">Size: <strong>{getPositionSize()}</strong>{position.main_crypto} Account: <strong>{position.exchange_account}</strong></span>
+			<br/>
+			<span className="additional-info-2">(${parseFloat(tempCryptoPrice).toFixed(4)} / ${parseFloat(mainCryptoPrice).toFixed(4)}) ({ratio})</span>
 
 		</div>
 	)

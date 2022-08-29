@@ -33,6 +33,7 @@ const PositionList = ({positions, allPrices}) => {
 						position={position}
 						ratio={ calcRatio(position.temp_crypto, position.main_crypto/*, allPrices*/) }
 						mainCryptoPrice={getPrice(position.main_crypto)}
+						tempCryptoPrice={getPrice(position.temp_crypto)}
 					/>
 				)
 			}
