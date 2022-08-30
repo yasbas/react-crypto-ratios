@@ -44,7 +44,7 @@ const Position = ({position, ratio, mainCryptoPrice, tempCryptoPrice}) => {
 			<br/>
 			<span className="additional-info">Size: <strong>{getPositionSize()}</strong>{position.main_crypto} Account: <strong>{position.exchange_account}</strong></span>
 			<br/>
-			<span className="additional-info-2">(${parseFloat(tempCryptoPrice).toFixed(4)} / ${parseFloat(mainCryptoPrice).toFixed(4)}) ({ratio})</span>
+			<span className="additional-info-2">${parseFloat(tempCryptoPrice).toFixed(4)} / ${parseFloat(mainCryptoPrice).toFixed(4)} &lt;=&gt; {ratio}</span>
 
 		</div>
 	)
