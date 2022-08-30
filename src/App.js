@@ -9,14 +9,6 @@ class App extends Component {
 
 		this.state = {
 			allPrices: [],
-			pairs: [
-				{'base': 'ALGO', 'quote': 'DOT'},
-				{'base': 'ALPACA', 'quote': 'XRP'},
-				{'base': 'ALPACA', 'quote': 'HNT'},
-				{'base': 'JOE', 'quote': 'XRP'},
-				{'base': 'MATIC', 'quote': 'XRP'},
-				{'base': 'ALGO', 'quote': 'HNT'},
-			],
 			positions: [],
 			lastLoadDateTime: ''
 		}
@@ -51,10 +43,10 @@ class App extends Component {
 			.then(response => response.json())
 			.then(json => {
 				// Return the positions, filtering the test positions
-				// this.setState({positions: json.positions}
 				let filteredPositions = json.positions.filter(position => !position.title.toLowerCase().includes('test'));
 				filteredPositions = json.positions.filter(position => !position.title.toLowerCase().includes('[closed]'));
-				this.setState({positions: filteredPositions.filter(position => !position.title.toLowerCase().includes('test'))}
+				filteredPositions = filteredPositions.filter(position => !position.title.toLowerCase().includes('test'))
+				this.setState({positions: filteredPositions}
 				)
 			})
 
@@ -65,13 +57,14 @@ class App extends Component {
 	}
 
 	extractUniqueCoinsFromPairs () {
+		// Get the coins from the Positions list
 		let uniqueValuesArr = []
-		this.state.pairs.forEach((item, index) => {
-			if (uniqueValuesArr.indexOf(item.base) === -1) {
-				uniqueValuesArr.push(item.base + this.coinSuffix)
+		this.state.positions.forEach((item, index) => {
+			if (uniqueValuesArr.indexOf(item.main_crypto + this.coinSuffix) === -1) {
+				uniqueValuesArr.push(item.main_crypto + this.coinSuffix)
 			}
-			if (uniqueValuesArr.indexOf(item.quote) === -1) {
-				uniqueValuesArr.push(item.quote + this.coinSuffix)
+			if (uniqueValuesArr.indexOf(item.temp_crypto + this.coinSuffix) === -1) {
+				uniqueValuesArr.push(item.temp_crypto + this.coinSuffix)
 			}
 		})
 
@@ -85,11 +78,8 @@ class App extends Component {
 				{/*<br/>*/}
 
 				<PositionList positions={this.state.positions} allPrices={this.state.allPrices} />
-
-				<p>
-					<p><button onClick={this.loadData} className="button">Reload</button></p>
-					<span className="additional-info-2"> {this.state.lastLoadDateTime}</span>
-				</p>
+				<p><button onClick={this.loadData} className="button">Reload</button></p>
+				<span className="additional-info-2"> {this.state.lastLoadDateTime}</span>
 			</div>
 		);
 	}
