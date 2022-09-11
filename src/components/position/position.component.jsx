@@ -38,7 +38,7 @@ const Position = ({position, ratio, mainCryptoPrice, tempCryptoPrice}) => {
 
 	return (
 		<div className="position-container">
-			<a href={'https://www.tradingview.com/chart/?symbol=BINANCE%3A'+position.temp_crypto+'USDT'} target="_blank">
+			<a href={'https://www.tradingview.com/chart/?symbol=BINANCE%3A'+position.temp_crypto+'USDT'} target="_blank"  rel="noreferrer">
 			<span className="title">{position.title}</span>
 			</a>
 
