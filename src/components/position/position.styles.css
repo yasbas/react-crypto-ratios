@@ -24,7 +24,7 @@
     color: red;
 }
 
-.additional-info {
+.highlight {
     color: #3681c2;
 }
 
@@ -32,3 +32,4 @@ span.additional-info-2 {
     color: rgb(255 255 255 / 37%);
     font-size: 14px;
 }
+

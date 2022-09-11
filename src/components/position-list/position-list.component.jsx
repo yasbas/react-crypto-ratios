@@ -18,7 +18,7 @@ const PositionList = ({positions, allPrices}) => {
 			ratio = basePrice / quoteData
 		}
 
-		return ratio.toFixed(6)
+		return ratio.toFixed(4)
 	}
 
 	return (
