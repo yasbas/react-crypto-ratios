@@ -32,6 +32,10 @@ const Position = ({position, ratio, mainCryptoPrice, tempCryptoPrice}) => {
 		return (getPositionCloseProfitAmount() * mainCryptoPrice).toFixed(2)
 	}
 
+	const getPositionAvgRatio = () => {
+		return (getPositionSize() / position.temp_crypto_amount).toFixed(4)
+	}
+
 	return (
 		<div className="position-container">
 			<span className="title">{position.title}</span>
@@ -42,9 +46,13 @@ const Position = ({position, ratio, mainCryptoPrice, tempCryptoPrice}) => {
 				<span><strong>${getPositionCloseProfitUsdt()}</strong></span>
 			</span>
 			<br/>
-			<span className="additional-info">Size: <s>{getPositionSize()}{position.main_crypto}</s> -> <strong>{position.temp_crypto_amount}</strong>{position.temp_crypto} Account: <strong>{position.exchange_account}</strong></span>
+			<span className="highlight">Size: <s>{getPositionSize()}{position.main_crypto}</s> -> <strong>{position.temp_crypto_amount}</strong>{position.temp_crypto}</span>
 			<br/>
-			<span className="additional-info-2">${parseFloat(tempCryptoPrice).toFixed(4)} / ${parseFloat(mainCryptoPrice).toFixed(4)} &lt;=&gt; {ratio}</span>
+			<span className="additional-info-2">Ratios (AVG/current): <strong className="highlight">{getPositionAvgRatio()}</strong> / {ratio}</span>
+			<br/>
+			<span className="additional-info-2">Current prices: ${parseFloat(tempCryptoPrice).toFixed(4)} / ${parseFloat(mainCryptoPrice).toFixed(4)} </span>
+			<br/>
+			<span className="additional-info-2">Account: <strong>{position.exchange_account}</strong></span>
 
 		</div>
 	)
