@@ -38,7 +38,9 @@ const Position = ({position, ratio, mainCryptoPrice, tempCryptoPrice}) => {
 
 	return (
 		<div className="position-container">
+			<a href={'https://www.tradingview.com/chart/?symbol=BINANCE%3A'+position.temp_crypto+'USDT'} target="_blank">
 			<span className="title">{position.title}</span>
+			</a>
 
 			<span className={'profit-indicator ' + (getPositionCloseProfitAmount() > 0 ? 'profit' : 'loss')}>
 				<span><strong>{getPositionCloseProfitPercentage()}</strong>%</span>
@@ -48,7 +50,7 @@ const Position = ({position, ratio, mainCryptoPrice, tempCryptoPrice}) => {
 			<br/>
 			<span className="highlight">Size: <s>{getPositionSize()}{position.main_crypto}</s> -> <strong>{position.temp_crypto_amount}</strong>{position.temp_crypto}</span>
 			<br/>
-			<span className="additional-info-2">Ratios (AVG/current): <strong className="highlight">{getPositionAvgRatio()}</strong> / {ratio}</span>
+			<span className="additional-info-2">Ratios: <strong className="highlight">{getPositionAvgRatio()}</strong> / <span className={'ratio-indicator ' + (getPositionCloseProfitAmount() > 0 ? 'profit' : 'loss')}>{ratio}</span> (AVG/current)</span>
 			<br/>
 			<span className="additional-info-2">Current prices: ${parseFloat(tempCryptoPrice).toFixed(4)} / ${parseFloat(mainCryptoPrice).toFixed(4)} </span>
 			<br/>
