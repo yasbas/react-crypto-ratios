@@ -24,6 +24,10 @@
     color: red;
 }
 
+span.ratio-indicator {
+	font-size: 14px;
+}
+
 .highlight {
     color: #3681c2;
 }
@@ -33,3 +37,6 @@ span.additional-info-2 {
     font-size: 14px;
 }
 
+a:link {
+	text-decoration: none;
+}
