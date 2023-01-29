@@ -55,6 +55,11 @@ the actual domain nime, e.g.: http://yasbas.com/cryptobe/web.
 
 In the project directory, you can run:
 
+### After clonning the repo:
+### `npm install`
+
+
+### Starting and testing commands:
 ### `npm start`
 
 Runs the app in the development mode.\
