@@ -91,7 +91,7 @@ class App extends Component {
 		// If a new value is selected for the refresh interval - stop the refreshing,
 		// as the setInterval must be restarted.
 		if (prevState.intervalDurationInSeconds !== this.state.intervalDurationInSeconds) {
-			this.state.isChecked = false;
+			this.setState({isChecked: false});
 		}
 		if (prevState.isChecked !== this.state.isChecked) {
 			// Create the refresh interval routine
