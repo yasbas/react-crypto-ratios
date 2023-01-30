@@ -48,7 +48,7 @@ const Position = ({position, ratio, mainCryptoPrice, tempCryptoPrice}) => {
 				<span><strong>${getPositionCloseProfitUsdt()}</strong></span>
 			</span>
 			<br/>
-			<span className="highlight">Size: <s>{getPositionSize()}{position.main_crypto}</s> -> <strong>{position.temp_crypto_amount}</strong>{position.temp_crypto}</span>
+			<span className="highlight">Size: <s>{getPositionSize()}{position.main_crypto}</s> -> <strong>{position.temp_crypto_amount.toFixed(4)}</strong>{position.temp_crypto}</span>
 			<br/>
 			<span className="additional-info-2">Ratios: <strong className="highlight">{getPositionAvgRatio()}</strong> / <span className={'ratio-indicator ' + (getPositionCloseProfitAmount() > 0 ? 'profit' : 'loss')}>{ratio}</span> (AVG/current)</span>
 			<br/>
