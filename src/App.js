@@ -20,12 +20,14 @@ class App extends Component {
 	}
 
 	loadData = () => {
-		// Load current prices
+		// Load current BINANCE prices
 		fetch('https://www.binance.com/api/v1/ticker/allPrices')
 		.then(response => response.json())
 		.then(
 			json => {
-				let uniqueCoins = this.extractUniqueCoinsFromPairs()
+				// YADO: Move 'binance' to some constant or whatever is used for not hard-coding names in JS. Ask the GPT :D
+				let uniqueCoins = this.extractUniqueCoinsFromPairsByExchange('binance')
+				//console.log(json);
 				json = json.filter(pair => uniqueCoins.includes(pair.symbol))
 
 				// Remove 'USDT' from symbols
@@ -34,8 +36,58 @@ class App extends Component {
 						return {...pair, symbol: pair.symbol.replace(this.coinSuffix, '')}
 					}
 				)
+				//console.log(json);
+				// YADO: Move to a function as this repeats with the block for Huobi
+				let uniqueValuesArr = []
+				json.forEach((item, index) => {
+					let itemExist = this.state.allPrices.find(priceItem => priceItem.symbol === item.symbol)
+					if (itemExist === undefined) {
+						uniqueValuesArr.push(item)
+					}
+				})
+				json = [].concat(this.state.allPrices, uniqueValuesArr)
+
+
 				this.setState({allPrices: json})
 				this.setState({lastLoadDateTime: new Date().toLocaleString()})
+			}
+		)
+
+		// Load current HUOBI prices
+		fetch('https://api.huobi.pro/market/tickers')
+		.then(response => response.json())
+		.then(
+			json => {
+				json = json.data
+				let uniqueCoins = this.extractUniqueCoinsFromPairsByExchange('huobi')
+				//console.log(uniqueCoins);
+				//console.log(json);
+
+				json = json.filter(pair => uniqueCoins.includes(pair.symbol.toUpperCase()))
+				//console.log(json);
+
+				// Remove 'USDT' from symbols
+				json = json.map(
+					pair => {
+						// Transform the array to match the one from Binance
+						// YADO: Make all price arrays match: {symbol: xx, price: yy}
+						return {symbol: pair.symbol.replace(this.coinSuffix.toLowerCase(), '').toUpperCase(), price: ((pair.ask+pair.bid)/2).toFixed(5)}
+					}
+				)
+
+				// YADO: Move to a function
+				let uniqueValuesArr = []
+				json.forEach((item, index) => {
+					let itemExist = this.state.allPrices.find(priceItem => priceItem.symbol === item.symbol)
+					if (itemExist === undefined) {
+						uniqueValuesArr.push(item)
+					}
+				})
+				json = [].concat(this.state.allPrices, uniqueValuesArr)
+
+				this.setState({allPrices: json})
+				this.setState({lastLoadDateTime: new Date().toLocaleString()})
+
 			}
 		)
 
@@ -55,15 +107,18 @@ class App extends Component {
 
 	}
 
-	extractUniqueCoinsFromPairs () {
+	extractUniqueCoinsFromPairsByExchange (exchange) {
 		// Get the coins from the Positions list
 		let uniqueValuesArr = []
 		this.state.positions.forEach((item, index) => {
-			if (uniqueValuesArr.indexOf(item.main_crypto + this.coinSuffix) === -1) {
-				uniqueValuesArr.push(item.main_crypto + this.coinSuffix)
-			}
-			if (uniqueValuesArr.indexOf(item.temp_crypto + this.coinSuffix) === -1) {
-				uniqueValuesArr.push(item.temp_crypto + this.coinSuffix)
+			//console.log(item.exchange_account.toLowerCase().includes(exchange.toLowerCase()))
+			if (item.exchange_account.toLowerCase().includes(exchange.toLowerCase())) {
+				if (uniqueValuesArr.indexOf(item.main_crypto + this.coinSuffix) === -1) {
+					uniqueValuesArr.push(item.main_crypto + this.coinSuffix)
+				}
+				if (uniqueValuesArr.indexOf(item.temp_crypto + this.coinSuffix) === -1) {
+					uniqueValuesArr.push(item.temp_crypto + this.coinSuffix)
+				}
 			}
 		})
 

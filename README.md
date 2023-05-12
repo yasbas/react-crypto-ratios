@@ -51,6 +51,24 @@ DEPLOY NOTE: when importing the DB in PhpMyAdmin on CPanel, it might need to edi
 with just 'utf8'. Also, while editing the SQL dump file, replace the site base url 'http://localhost:8001' with 
 the actual domain nime, e.g.: http://yasbas.com/cryptobe/web.
 
+## Project Setup
+Install Node.js via nvm:
+(based on [this article](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-22-04))
+```bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash;
+source ~/.bashrc;
+```
+
+Then check what version si the latest:
+```bash
+nvm list-remote
+```
+
+Pick one and install it, e.g.:
+```bash
+nvm install v18.16.0
+```
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -98,6 +116,13 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+# Troubleshooting
+
+If you get errors in the console about some cross-origin shits, you can install this Chrome extensions and activate it:
+```
+Allow CORS: Access-Control-Allow-Origin
+```
 
 # Deployment
 
