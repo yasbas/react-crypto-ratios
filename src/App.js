@@ -15,86 +15,14 @@ class App extends Component {
 			intervalId: null,
 			intervalDurationInSeconds: 5
 		}
-
-		this.coinSuffix = 'USDT'
 	}
 
 	loadData = () => {
-		// Load current BINANCE prices
-		fetch('https://www.binance.com/api/v1/ticker/allPrices')
-		.then(response => response.json())
-		.then(
-			json => {
-				// YADO: Move 'binance' to some constant or whatever is used for not hard-coding names in JS. Ask the GPT :D
-				let uniqueCoins = this.extractUniqueCoinsFromPairsByExchange('binance')
-				//console.log(json);
-				json = json.filter(pair => uniqueCoins.includes(pair.symbol))
-
-				// Remove 'USDT' from symbols
-				json = json.map(
-					pair => {
-						return {...pair, symbol: pair.symbol.replace(this.coinSuffix, '')}
-					}
-				)
-				//console.log(json);
-				// YADO: Move to a function as this repeats with the block for Huobi
-				let uniqueValuesArr = []
-				json.forEach((item, index) => {
-					let itemExist = this.state.allPrices.find(priceItem => priceItem.symbol === item.symbol)
-					if (itemExist === undefined) {
-						uniqueValuesArr.push(item)
-					}
-				})
-				json = [].concat(this.state.allPrices, uniqueValuesArr)
-
-
-				this.setState({allPrices: json})
-				this.setState({lastLoadDateTime: new Date().toLocaleString()})
-			}
-		)
-
-		// Load current HUOBI prices
-		fetch('https://api.huobi.pro/market/tickers')
-		.then(response => response.json())
-		.then(
-			json => {
-				json = json.data
-				let uniqueCoins = this.extractUniqueCoinsFromPairsByExchange('huobi')
-				//console.log(uniqueCoins);
-				//console.log(json);
-
-				json = json.filter(pair => uniqueCoins.includes(pair.symbol.toUpperCase()))
-				//console.log(json);
-
-				// Remove 'USDT' from symbols
-				json = json.map(
-					pair => {
-						// Transform the array to match the one from Binance
-						// YADO: Make all price arrays match: {symbol: xx, price: yy}
-						return {symbol: pair.symbol.replace(this.coinSuffix.toLowerCase(), '').toUpperCase(), price: ((pair.ask+pair.bid)/2).toFixed(5)}
-					}
-				)
-
-				// YADO: Move to a function
-				let uniqueValuesArr = []
-				json.forEach((item, index) => {
-					let itemExist = this.state.allPrices.find(priceItem => priceItem.symbol === item.symbol)
-					if (itemExist === undefined) {
-						uniqueValuesArr.push(item)
-					}
-				})
-				json = [].concat(this.state.allPrices, uniqueValuesArr)
-
-				this.setState({allPrices: json})
-				this.setState({lastLoadDateTime: new Date().toLocaleString()})
-
-			}
-		)
-
 		// Load positions
 		// CORS issues: https://developer.okta.com/blog/2021/08/02/fix-common-problems-cors#how-to-solve-a-simple-cors-issue
-		// fetch('http://localhost:8001/api/json', {referrerPolicy: 'unsafe-url'})
-		fetch('https://yasbas.com/cryptobe/web/api/json')
+		// fetch('http://localhost/api/json'/*, {referrerPolicy: 'unsafe-url'}*/)
+		// fetch('https://yasbas.com/cryptobe/web/api/json')
+		fetch('http://159.89.99.194/web/api/json')
 			.then(response => response.json())
 			.then(json => {
 				// Return the positions, filtering the test positions
@@ -105,24 +33,6 @@ class App extends Component {
 				)
 			})
 
-	}
-
-	extractUniqueCoinsFromPairsByExchange (exchange) {
-		// Get the coins from the Positions list
-		let uniqueValuesArr = []
-		this.state.positions.forEach((item, index) => {
-			//console.log(item.exchange_account.toLowerCase().includes(exchange.toLowerCase()))
-			if (item.exchange_account.toLowerCase().includes(exchange.toLowerCase())) {
-				if (uniqueValuesArr.indexOf(item.main_crypto + this.coinSuffix) === -1) {
-					uniqueValuesArr.push(item.main_crypto + this.coinSuffix)
-				}
-				if (uniqueValuesArr.indexOf(item.temp_crypto + this.coinSuffix) === -1) {
-					uniqueValuesArr.push(item.temp_crypto + this.coinSuffix)
-				}
-			}
-		})
-
-		return uniqueValuesArr;
 	}
 
 	handleRefreshCheckboxChange = (event) => {
@@ -169,7 +79,7 @@ class App extends Component {
 	render () {
 		return (
 			<div className="App">
-				<PositionList positions={this.state.positions} allPrices={this.state.allPrices} />
+				<PositionList positions={this.state.positions} />
 				<p><button onClick={this.loadData} className="button">Reload</button></p>
 				<span className="additional-info-2"> {this.state.lastLoadDateTime}</span>
 				<p>
